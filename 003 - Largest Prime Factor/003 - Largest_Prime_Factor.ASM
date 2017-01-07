@@ -8,7 +8,7 @@ include "win64ax.inc"
 	fistp [sqrt]		; store to the memory
 
 	mov ecx, [sqrt] 	; square root of the number is our limit
-	mov rbx, 1		; skipping 2 because laziness. for even numbers, we need to do loopDiv for 2 first, then even numbers
+	mov rbx, 1		; skipping 2 because laziness. for even numbers, we need to do loopDiv for 2 first, then odd numbers
 
   .loopCount:
 	cmp ebx, ecx		; check if we exceeded the square root
