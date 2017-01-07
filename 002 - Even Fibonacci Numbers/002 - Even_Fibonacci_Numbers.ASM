@@ -2,24 +2,25 @@ format PE console
 include "win32ax.inc"
 
   start:
-	mov eax, 1
-	mov ebx, 1
-	mov edx, 0
+	mov eax, 1		; first fibonacci number
+	mov ebx, 1		; second fibonacci number
+	mov edx, 0		; sum variable
 
   .loop:
-	mov ecx, ebx
-	add ebx, eax
-	mov eax, ecx
+	mov ecx, ebx		; keep the second
+	add ebx, eax		; move second to first
+	mov eax, ecx		; add the two to get next fibonacci
 
-	cmp ebx, 4000000
-	jg start.finish
+	cmp ebx, 4000000	; check if we exceeded the limit
+	jg start.finish 	; if so, skip to end
 
-	test ebx, 1
-	jnz start.loop
-	add edx, ebx
-	jmp start.loop
+	test ebx, 1		; check if last fibonacci is odd
+	jnz start.loop		; if so, skip to start
+	add edx, ebx		; if it's even, add to edx
+	jmp start.loop		; go to start
 
   .finish:
+	; print sum using printf function of c
 	cinvoke printf, formatstring, edx
 	invoke ExitProcess, 0
 
