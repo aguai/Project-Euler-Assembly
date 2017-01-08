@@ -28,7 +28,7 @@ include "win64ax.inc"
 	mov [max], rbx		; if this is a divisor, save it
 	mov [num], rax		; and change the divisor with quotient
 
-	jmp start.loopDiv	; move to the next odd number
+	jmp start.loopDiv	; try to divide with this number again
 
   .finish:
 	; print max using printf function of c
