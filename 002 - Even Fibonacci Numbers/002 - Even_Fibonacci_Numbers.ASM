@@ -8,8 +8,8 @@ include "win32ax.inc"
 
   .loop:
 	mov ecx, ebx		; keep the second
-	add ebx, eax		; move second to first
-	mov eax, ecx		; add the two to get next fibonacci
+	add ebx, eax		; add second to first and get next fibonacci
+	mov eax, ecx		; move second to first fibonacci
 
 	cmp ebx, 4000000	; check if we exceeded the limit
 	jg start.finish 	; if so, skip to end
