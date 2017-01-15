@@ -2,15 +2,18 @@ format PE console
 include "win32ax.inc"
 
   start:
+	mov ebx, [floor]
+
   .loopOut:
-	cmp [count1], 100
+	cmp [count1], ebx
 	jl start.loopDone
 
 	sub [count1], 1
 	mov [count2], 1000
 
   .loopIn:
-	cmp [count2], 100
+	mov ebx, [floor]
+	cmp [count2], ebx
 	jl start.loopOut
 
 	sub [count2], 1
@@ -22,6 +25,11 @@ include "win32ax.inc"
 	jl start.loopIn
 
 	mov [max], eax
+
+	fild [max]
+	fsqrt
+	fistp [floor]
+
 	jmp start.loopIn
 
   .loopDone:
@@ -34,6 +42,7 @@ include "win32ax.inc"
 	count1 dd 1000
 	count2 dd ?
 	max dd 0
+	floor dd 100
 
 section '.idata' import data readable
 
