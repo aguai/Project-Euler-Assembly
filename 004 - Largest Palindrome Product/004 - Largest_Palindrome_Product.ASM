@@ -59,7 +59,6 @@ section '.idata' import data readable
 	cmp eax, 10
 	jl isPalindrome.done
 
-
 	mov edi, 1
 	mov esi, 10
 
