@@ -33,7 +33,6 @@ include "win32ax.inc"
 	jmp start.loopIn
 
   .loopDone:
-
 	; print sum using printf function of c
 	cinvoke printf, formatstring, [max]
 	invoke	ExitProcess, 0
@@ -54,32 +53,27 @@ section '.idata' import data readable
 
 
   isPalindrome: ; eax holds the number
+	mov ecx, eax
 	push eax
 
 	cmp eax, 10
 	jl isPalindrome.done
 
-	mov edi, 1
+	mov eax, 10
 	mov esi, 10
 
   .logLoop: ; doing manual floor(log10(eax))
-	cmp esi, eax
-	jg isPalindrome.logDone
-
-	xor edx, edx
-	div esi
-
-	push eax
-	mov eax, edi
-	mul esi
 	mov edi, eax
-	pop eax
+	mul esi
+
+	cmp eax, ecx
+	jg isPalindrome.logDone
 
 	jmp isPalindrome.logLoop
 
   .logDone:
-	pop eax
-	push eax
+	mov eax, ecx
+	mov ebx, 100
 
   .chkLoop:
 	xor edx, edx
@@ -88,7 +82,6 @@ section '.idata' import data readable
 
 	mov eax, edx
 	xor edx, edx
-	mov esi, 10
 	div esi
 	mov ch, dl
 
@@ -97,8 +90,7 @@ section '.idata' import data readable
 
 	xchg eax, edi
 	xor edx, edx
-	mov esi, 100
-	div esi
+	div ebx
 	xchg eax, edi
 
 	cmp edi, 10
