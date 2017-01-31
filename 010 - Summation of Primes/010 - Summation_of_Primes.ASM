@@ -26,10 +26,9 @@ include "win32ax.inc"
 	push sum
 	call int64ToStr
 
-	cinvoke printf, formatstring, eax
+	cinvoke printf, eax
 	invoke	ExitProcess, 0
 
-	formatstring db "%s", 13, 10, 0
 	num dd ?
 	sqrt dd ?
 	sum dq 0
